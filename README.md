@@ -61,7 +61,7 @@ ehf-eval/
 * **Pass Criteria:** Static syntax verification matching all 6 mandatory HDL requirements (module name, input/output registers, `posedge clk`, asynchronous `posedge rst` / `if (rst)`).
 
 #### Task 3: STM32 Baud Rate Register (BRR) Math (`task_03_stm32_usart`)
-* **Objective:** Calculate the 16-bit register value `USART_BRR` for STM32F4 given: APB1 Clock = $42\text{ MHz}$, Desired Baud Rate = $115200\text{ Baud}$, `OVER8 = 0`.
+* **Objective:** Calculate the 16-bit register value `USARTBRR` for STM32F4 given: APB1 Clock = $42\text{ MHz}$, Desired Baud Rate = $115200\text{ Baud}$, `OVER8 = 0`.
 * **Governing Mathematical Equations:**
   $$\text{USARTDIV} = \frac{f_{\text{CK}}}{16 \times \text{Baud}} = \frac{42,000,000}{16 \times 115200} = 22.7864583$$
   $$\text{Mantissa} = \lfloor 22.7864583 \rfloor = 22 = \text{0x16}$$
