@@ -1,0 +1,11 @@
+MODEL: groq/llama-3.3-70b-versatile
+TASK: task_02_verilog
+TRIAL: 3
+SCORE: 0.0
+========================================
+PROMPT:
+Write a synthesizable Verilog module named 'clk_divider' with ports: input wire clk, input wire rst, output reg clk_out. The module divides clk by 4 using asynchronous active-high reset. Return ONLY raw Verilog code inside a markdown verilog code block.
+
+========================================
+RESPONSE:
+

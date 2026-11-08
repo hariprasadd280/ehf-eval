@@ -1,0 +1,61 @@
+MODEL: gemini-2.5-flash
+TASK: task_01_filter
+TRIAL: 1
+SCORE: 0.0
+========================================
+PROMPT:
+Design a 2nd-order Sallen-Key low-pass filter with a cutoff frequency fc = 1000 Hz (+/- 50 Hz tolerance) and Q = 0.707. Select standard E24 resistor values (R1, R2 in Ohms) and capacitor values (C1, C2 in Farads). Return ONLY valid JSON with keys: 'R1', 'R2', 'C1', 'C2'.
+
+========================================
+RESPONSE:
+To design a 2nd-order Sallen-Key low-pass filter with a cutoff frequency $f_c = 1000 \text{ Hz}$ and $Q = 0.707$ (Butterworth response), we need to determine the values for $R_1, R_2, C_1, C_2$.
+
+For a Sallen-Key low-pass filter, the general equations relating the components to the cutoff frequency ($\omega_c = 2\pi f_c$) and quality factor ($Q$) are:
+$\omega_c = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}$
+$Q = \frac{\sqrt{R_1 R_2 C_1 C_2}}{R_1 C_1 + R_2 C_1 + (1-K)R_1 C_2}$
+where $K$ is the gain of the op-amp stage.
+
+A common simplification for designing Sallen-Key filters, especially for Butterworth response, is to set $R_1 = R_2 = R$ and $C_1 = C_2 = C$. In this case, the equations simplify to:
+$\omega_c = \frac{1}{\sqrt{R^2 C^2}} = \frac{1}{RC}$
+$Q = \frac{RC}{R C + R C + (1-K)R C} = \frac{1}{1 + 1 + (1-K)} = \frac{1}{3-K}$
+
+We are given $f_c = 1000 \text{ Hz}$ and $Q = 0.707$.
+First, calculate the angular cutoff frequency:
+$\omega_c = 2\pi f_c = 2\pi \times 1000 \text{ Hz} \approx 6283.185 \text{ rad/s}$.
+
+Now, calculate the required gain $K$ for $Q = 0.707$:
+$0.707 = \frac{1}{3-K}$
+$3-K = \frac{1}{0.707} = \sqrt{2} \approx 1.4142$
+$K = 3 - \sqrt{2} \approx 3 - 1.4142 = 1.5858$
+
+This indicates that a non-unity gain Sallen-Key configuration is required (since $K \neq 1$). The gain $K$ would be set by external resistors around the op-amp (e.g., $K = 1 + R_f/R_g$ for a non-inverting amplifier configuration). The problem asks only for $R_1, R_2, C_1, C_2$.
+
+Next, we use the equation $\omega_c = \frac{1}{RC}$ to find suitable $R$ and $C$ values from the E24 series.
+$RC = \frac{1}{\omega_c} = \frac{1}{6283.185} \approx 1.5915 \times 10^{-4}$
+
+Let's choose an E24 capacitor value and then find a corresponding E24 resistor value that places $f_c$ within the tolerance ($1000 \text{ Hz} \pm 50 \text{ Hz}$, meaning $950 \text{ Hz}$ to $1050 \text{ Hz}$).
+
+Try $C = 12 \text{ nF}$ (an E24 value).
+$R = \frac{1}{C \omega_c} = \frac{1}{12 \times 10^{-9} \times 6283.185} = \frac{1}{7.5398 \times 10^{-5}} \approx 13262.9 \text{ Ohms}$.
+
+The closest E24 resistor values are $13 \text{ k\Omega}$ and $15 \text{ k\Omega}$. Let's select $R = 13 \text{ k\Omega}$.
+Now, let's calculate the actual cutoff frequency with $R = 13 \text{ k\Omega}$ and $C = 12 \text{ nF}$:
+$f_c = \frac{1}{2\pi RC} = \frac{1}{2\pi \times 13000 \times 12 \times 10^{-9}} = \frac{1}{2\pi \times 1.56 \times 10^{-4}} \approx 1020.92 \text{ Hz}$.
+
+This calculated frequency ($1020.92 \text{ Hz}$) falls within the allowed tolerance band of $950 \text{ Hz}$ to $1050 \text{ Hz}$.
+The selected components are standard E24 values.
+
+Therefore, the component values are:
+$R_1 = 13000 \text{ Ohms}$
+$R_2 = 13000 \text{ Ohms}$
+$C_1 = 12 \times 10^{-9} \text{ Farads}$
+$C_2 = 12 \times 10^{-9} \text{ Farads}$
+
+```json
+{
+  "R1": 13000,
+  "R2": 13000,
+  "C1": 1.2e-8,
+  "C2": 1.2e-8
+}
+```

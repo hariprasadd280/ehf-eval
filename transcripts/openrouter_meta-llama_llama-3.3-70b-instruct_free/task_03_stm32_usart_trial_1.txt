@@ -1,0 +1,11 @@
+MODEL: openrouter/meta-llama/llama-3.3-70b-instruct:free
+TASK: task_03_stm32_usart
+TRIAL: 1
+SCORE: 0.0
+========================================
+PROMPT:
+Write C code to calculate the 16-bit USART_BRR register value for STM32F4 (APB1 clock = 42 MHz, desired Baud Rate = 115200, OVER8 = 0). Return ONLY valid JSON with keys: 'mantissa' (int), 'fraction' (int), and 'BRR_hex' (string formatted like '0x16D').
+
+========================================
+RESPONSE:
+
