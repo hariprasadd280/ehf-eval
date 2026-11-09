@@ -5,6 +5,7 @@
 > **Event:** micro1 Eval Hackathon
 
 ---
+Github Repo Link:- https://github.com/hariprasadd280/ehf-eval 
 
 ## 📌 Executive Summary & Target Limitation
 
@@ -155,6 +156,8 @@ python -m pytest graders/
 All trial outputs, raw model reasoning traces, and error logs are automatically recorded inside `transcripts/` and aggregated in `results/summary.json`.
 
 ---
+
+Video Walkthrough Link:- https://youtu.be/cienPWkB7O0?si=MMmm1k8Cmf6gC9G1
 
 ## 🤖 Provenance & AI Usage Disclosure
 
